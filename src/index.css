@@ -1,68 +1,131 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', 'sans-serif';
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  margin: 0;
+  min-height: 600px;
+  background-image: linear-gradient(
+    180deg,
+    #ffd47d 0,
+    #ffc682 10%,
+    #ffb785 20%,
+    #ffa687 30%,
+    #ff9587 40%,
+    #f78383 50%,
+    #dc737e 60%,
+    #c36679 70%,
+    #ae5c74 80%,
+    #9c5471 90%,
+    #8d4f6f 100%
+  );
+  background-repeat: no-repeat;
+  margin: 25px;
+  padding: 0;
+}
+
+.game {
+  padding: 2rem 0 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  flex-wrap: wrap;
+  transform: scale(0, 0);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.game.active {
+  position: absolute;
+  top: 25%;
+  right: 0;
+  transform: scale(1, 1);
+  transition: 1.2s;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.persegi {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border: solid #ffcc80 3px;
+  font-weight: bold;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.judul {
+  width: 100%;
+  align-items: center;
+  margin: 0.75rem 0;
+}
+.status {
+  color: white;
+  width: 100%;
+  align-items: center;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+.papan {
+  display: flex;
+  flex-wrap: wrap;
+  width: 150px;
+  height: 150px;
+}
+.x {
+  color: red;
+}
+.o {
+  color: purple;
+}
+
+.namaPemain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.player {
+  width: 37%;
+  margin: 0 5rem 2rem;
+  font-size: 15px;
+}
+
+.tombolPlay {
+  font-size: 18.5px;
+  font-weight: bold;
+  background-color: #dc737e;
+  color: white;
+  border-radius: 12%;
+  border-color: #9f5572;
+}
+.reset {
+  margin: 1.5rem 0 0;
+  font-size: 18.5px;
+  font-weight: bold;
+  background-color: #dc737e;
+  color: white;
+  border-radius: 12%;
+  border-color: #9f5572;
+}
+
+.skor {
+  padding: 0.75rem 0;
+}
+
+@media (max-width: 768px) {
+  .tombolPlay {
+    font-size: 15.5px;
   }
-  a:hover {
-    color: #747bff;
+  .reset {
+    font-size: 15.5px;
   }
-  button {
-    background-color: #f9f9f9;
+  h1 {
+    font-size: 1.5em;
   }
 }
