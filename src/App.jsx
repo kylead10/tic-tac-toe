@@ -1,89 +1,88 @@
 import { useState } from 'react';
 
-function Kotak({ value, onKotakClick }) {
-  const style = value === 'X' ? 'persegi x' : 'persegi o';
+function Box({ value, onBoxClick }) {
+  const style = value === 'X' ? 'square x' : 'square o';
 
   return (
-    <button className={style} onClick={onKotakClick}>
+    <button className={style} onClick={onBoxClick}>
       {value}
     </button>
   );
 }
 
-function Papan({ namaPemain1, namaPemain2, playClicked }) {
-  const [kotak, setKotak] = useState(Array(9).fill(null));
+function Board({ player1Name, player2Name, playClicked }) {
+  const [boxes, setBoxes] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
-  const [skor, setSkor] = useState({ xSkor: 0, oSkor: 0 });
-  const [skorUpdate, setSkorUpdate] = useState(false);
+  const [score, setScore] = useState({ xScore: 0, oScore: 0 });
+  const [scoreUpdated, setScoreUpdated] = useState(false);
 
   function handleClick(i) {
-    if (kotak[i] || pemenangBermain(kotak)) return;
+    if (boxes[i] || calculateWinner(boxes)) return;
 
-    const nextKotak = kotak.slice();
+    const nextBoxes = boxes.slice();
 
-    nextKotak[i] = xIsNext ? 'X' : 'O';
-    setKotak(nextKotak);
+    nextBoxes[i] = xIsNext ? 'X' : 'O';
+    setBoxes(nextBoxes);
     setXIsNext(!xIsNext);
   }
 
-  const Pemenang = pemenangBermain(kotak);
+  const winner = calculateWinner(boxes);
 
   let status = '';
-  if (Pemenang) {
+  if (winner) {
     status =
-      'Selamat kepada ' +
-      (!xIsNext ? namaPemain1 : namaPemain2) +
-      ' telah memenangkan permainan';
-    if (!skorUpdate) {
-      setSkor((skorSebelumnya) =>
+      'Congratulations to ' +
+      (!xIsNext ? player1Name : player2Name) +
+      ' for winning the game';
+    if (!scoreUpdated) {
+      setScore((prevScore) =>
         !xIsNext
-          ? { xSkor: skorSebelumnya.xSkor + 1, oSkor: skorSebelumnya.oSkor }
-          : { xSkor: skorSebelumnya.xSkor, oSkor: skorSebelumnya.oSkor + 1 }
+          ? { xScore: prevScore.xScore + 1, oScore: prevScore.oScore }
+          : { xScore: prevScore.xScore, oScore: prevScore.oScore + 1 }
       );
-      setSkorUpdate(!skorUpdate);
+      setScoreUpdated(!scoreUpdated);
     }
   } else {
-    status =
-      'Giliran: ' + (xIsNext ? namaPemain1 + '(X)' : namaPemain2 + '(O)');
-    if (kotak.every((value) => value) && !Pemenang) {
-      status = 'Permainan sangat ketat berakhir imbang 👍';
+    status = 'Turn: ' + (xIsNext ? player1Name + '(X)' : player2Name + '(O)');
+    if (boxes.every((value) => value) && !winner) {
+      status = 'The game is a draw 👍';
     }
   }
 
-  function Reset() {
-    if (kotak.some((value) => value !== null)) {
-      setKotak(Array(9).fill(null));
+  function resetGame() {
+    if (boxes.some((value) => value !== null)) {
+      setBoxes(Array(9).fill(null));
       setXIsNext(true);
-      setSkorUpdate(!skorUpdate);
+      setScoreUpdated(!scoreUpdated);
     }
   }
-  const papanClassName = playClicked ? 'game active' : 'game';
+  const boardClassName = playClicked ? 'game active' : 'game';
   return (
     <>
-      <div className={papanClassName}>
-        <h1 className='judul'>Tic-Tac-Toe Game</h1>
-        <div className='skor'>
+      <div className={boardClassName}>
+        <h1 className='title'>Tic-Tac-Toe Game</h1>
+        <div className='score'>
           <p>
-            Skor {namaPemain1} :{skor.xSkor}
+            Score {player1Name} : {score.xScore}
           </p>
           <p>
-            Skor {namaPemain2} :{skor.oSkor}
+            Score {player2Name} : {score.oScore}
           </p>
         </div>
         <p className='status'>{status}</p>
-        <div className='papan'>
-          <Kotak value={kotak[0]} onKotakClick={() => handleClick(0)} />
-          <Kotak value={kotak[1]} onKotakClick={() => handleClick(1)} />
-          <Kotak value={kotak[2]} onKotakClick={() => handleClick(2)} />
-          <Kotak value={kotak[3]} onKotakClick={() => handleClick(3)} />
-          <Kotak value={kotak[4]} onKotakClick={() => handleClick(4)} />
-          <Kotak value={kotak[5]} onKotakClick={() => handleClick(5)} />
-          <Kotak value={kotak[6]} onKotakClick={() => handleClick(6)} />
-          <Kotak value={kotak[7]} onKotakClick={() => handleClick(7)} />
-          <Kotak value={kotak[8]} onKotakClick={() => handleClick(8)} />
+        <div className='board'>
+          <Box value={boxes[0]} onBoxClick={() => handleClick(0)} />
+          <Box value={boxes[1]} onBoxClick={() => handleClick(1)} />
+          <Box value={boxes[2]} onBoxClick={() => handleClick(2)} />
+          <Box value={boxes[3]} onBoxClick={() => handleClick(3)} />
+          <Box value={boxes[4]} onBoxClick={() => handleClick(4)} />
+          <Box value={boxes[5]} onBoxClick={() => handleClick(5)} />
+          <Box value={boxes[6]} onBoxClick={() => handleClick(6)} />
+          <Box value={boxes[7]} onBoxClick={() => handleClick(7)} />
+          <Box value={boxes[8]} onBoxClick={() => handleClick(8)} />
         </div>
-        <button className='reset' onClick={Reset}>
-          Mulai ulang permainan
+        <button className='reset' onClick={resetGame}>
+          Restart the game
         </button>
       </div>
     </>
@@ -91,56 +90,56 @@ function Papan({ namaPemain1, namaPemain2, playClicked }) {
 }
 
 export default function Game() {
-  const [namaPemain1, setNamaPemain1] = useState('');
-  const [namaPemain2, setNamaPemain2] = useState('');
+  const [player1Name, setPlayer1Name] = useState('');
+  const [player2Name, setPlayer2Name] = useState('');
   const [playClicked, setPlayClicked] = useState(false);
 
-  function handlePlayer() {
+  function handlePlayers() {
     const inputValue1 = document.getElementById('Player-1').value;
     const inputValue2 = document.getElementById('Player-2').value;
 
-    setNamaPemain1(inputValue1);
-    setNamaPemain2(inputValue2);
+    setPlayer1Name(inputValue1);
+    setPlayer2Name(inputValue2);
 
     if (inputValue1 && inputValue2) setPlayClicked(true);
     else {
-      alert('Nama pemain harus diisi');
+      alert('Player names must be filled in');
     }
   }
   return (
     <>
       {!playClicked ? (
-        <label className='namaPemain'>
+        <label className='playerNames'>
           <input
             className='player'
             type='text'
-            placeholder='Masukkan Nama pemain ke-1'
+            placeholder='Enter Player 1 name'
             id='Player-1'
             required
           />
           <input
             className='player'
             type='text'
-            placeholder='Masukkan Nama pemain ke-2'
+            placeholder='Enter Player 2 name'
             id='Player-2'
             required
           />
-          <button onClick={handlePlayer} className='tombolPlay'>
-            Mulai
+          <button onClick={handlePlayers} className='playButton'>
+            Start
           </button>
         </label>
       ) : null}
-      <Papan
-        namaPemain1={namaPemain1}
-        namaPemain2={namaPemain2}
+      <Board
+        player1Name={player1Name}
+        player2Name={player2Name}
         playClicked={playClicked}
       />
     </>
   );
 }
 
-function pemenangBermain(kotak) {
-  const menang = [
+function calculateWinner(boxes) {
+  const lines = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -151,11 +150,11 @@ function pemenangBermain(kotak) {
     [2, 4, 6],
   ];
 
-  for (let i = 0; i < menang.length; i++) {
-    const [x, y, z] = menang[i];
-    if (kotak[x] && kotak[x] === kotak[y] && kotak[x] === kotak[z]) {
-      return kotak[x];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (boxes[a] && boxes[a] === boxes[b] && boxes[a] === boxes[c]) {
+      return boxes[a];
     }
   }
-  return false;
+  return null;
 }
