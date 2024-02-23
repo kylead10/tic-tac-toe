@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -45,7 +45,8 @@ body {
   transform: scale(1, 1);
   transition: 1.2s;
 }
-.persegi {
+
+.square {
   width: 50px;
   height: 50px;
   background-color: white;
@@ -55,11 +56,12 @@ body {
   cursor: pointer;
 }
 
-.judul {
+.title {
   width: 100%;
   align-items: center;
   margin: 0.75rem 0;
 }
+
 .status {
   color: white;
   width: 100%;
@@ -69,20 +71,22 @@ body {
   padding: 0.5rem 0;
 }
 
-.papan {
+.board {
   display: flex;
   flex-wrap: wrap;
   width: 150px;
   height: 150px;
 }
+
 .x {
   color: red;
 }
+
 .o {
   color: purple;
 }
 
-.namaPemain {
+.playerNames {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,36 +100,28 @@ body {
   font-size: 15px;
 }
 
-.tombolPlay {
-  font-size: 18.5px;
-  font-weight: bold;
-  background-color: #dc737e;
-  color: white;
-  border-radius: 12%;
-  border-color: #9f5572;
-}
+.playButton,
 .reset {
-  margin: 1.5rem 0 0;
   font-size: 18.5px;
   font-weight: bold;
   background-color: #dc737e;
   color: white;
   border-radius: 12%;
   border-color: #9f5572;
+  margin: 1.5rem 0 0;
 }
 
-.skor {
+.score {
   padding: 0.75rem 0;
 }
 
 @media (max-width: 768px) {
-  .tombolPlay {
-    font-size: 15.5px;
-  }
+  .playButton,
   .reset {
     font-size: 15.5px;
   }
-  h1 {
+
+  .title {
     font-size: 1.5em;
   }
 }
