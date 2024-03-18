@@ -135,7 +135,7 @@ export default function Game() {
         player2Name={player2Name}
         playClicked={playClicked}
       />
-      <Footer />;
+      <Footer />
     </>
   );
 }
