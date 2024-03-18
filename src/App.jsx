@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Footer';
+import Footer from './Footer';
 
 function Box({ value, onBoxClick }) {
   const style = value === 'X' ? 'square x' : 'square o';
@@ -135,6 +135,7 @@ export default function Game() {
         player2Name={player2Name}
         playClicked={playClicked}
       />
+      <Footer />;
     </>
   );
 }
