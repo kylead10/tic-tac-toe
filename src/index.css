@@ -108,7 +108,21 @@ body {
   text-align: center;
 }
 
-.playButton,
+.playButton {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #dc737e;
+  color: white;
+  border-radius: 12%;
+  border-color: #9f5572;
+  margin-top: 1.5rem;
+  padding: 12px 24px;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .reset {
   font-size: 24px;
   font-weight: bold;
