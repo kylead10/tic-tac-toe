@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Footer';
 
 function Box({ value, onBoxClick }) {
   const style = value === 'X' ? 'square x' : 'square o';

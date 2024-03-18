@@ -6,7 +6,7 @@
 }
 
 body {
-  min-height: 600px;
+  min-height: ;
   background-image: linear-gradient(
     180deg,
     #ffd47d 0,
@@ -22,7 +22,7 @@ body {
     #8d4f6f 100%
   );
   background-repeat: no-repeat;
-  margin: 25px;
+  margin: 300px;
   padding: 0;
 }
 
