@@ -83,7 +83,7 @@ function Board({ player1Name, player2Name, playClicked }) {
           <Box value={boxes[8]} onBoxClick={() => handleClick(8)} />
         </div>
         <button className='reset' onClick={resetGame}>
-          Restart the game
+          Restart game
         </button>
       </div>
     </>
