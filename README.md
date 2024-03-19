@@ -3,7 +3,7 @@ Tic-Tac-Toe Game:
 This is a simple Tic-Tac-Toe game built using React. Players take turns marking spaces in a 3x3 grid, aiming to get three of their symbols (either "X" or "O") in a row, column, or diagonal. The first player to achieve this goal wins the game.
 
 Demo:
-You can play the game here: (https://tic-tac-toe-psi-ashy.vercel.app/)https://tic-tac-toe-psi-ashy.vercel.app/
+You can play the game here: [(https://tic-tac-toe-psi-ashy.vercel.app/)https://tic-tac-toe-psi-ashy.vercel.app/](https://tic-tac-toe-psi-ashy.vercel.app/)
 
 Features:
 Player Names: Enter the names of two players before starting the game.
