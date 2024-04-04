@@ -16,7 +16,7 @@ Technologies Used:
 -React,
 -JavaScript (ES6+),
 -HTML5,
-CSS3.
+-CSS3.
 
 Contributing
 Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request with your changes.
