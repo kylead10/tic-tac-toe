@@ -13,7 +13,7 @@ Restart Game: Allows players to restart the game after it ends.
 
 
 Technologies Used:
-React,
+-React,
 JavaScript (ES6+),
 HTML5,
 CSS3.
