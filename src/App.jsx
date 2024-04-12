@@ -96,8 +96,8 @@ export default function Game() {
   const [playClicked, setPlayClicked] = useState(false);
 
   function handlePlayers() {
-    const inputValue1 = document.getElementById('Player-1').value;
-    const inputValue2 = document.getElementById('Player-2').value;
+    const inputValue1 = document.getElementById('Player-1').value.trim();
+    const inputValue2 = document.getElementById('Player-2').value.trim();
 
     setPlayer1Name(inputValue1);
     setPlayer2Name(inputValue2);
