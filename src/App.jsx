@@ -116,6 +116,7 @@ export default function Game() {
             type='text'
             placeholder='Enter Player 1 name'
             id='Player-1'
+            name='Player-1'
             required
           />
           <input
